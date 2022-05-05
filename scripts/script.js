@@ -23,7 +23,7 @@ var ExcelToJSON = function() {
             }
         
         }
-          textArea.value(XL_row_object)
+        document.getElementById('xlx_json').value = json_object
         
 
           // console.log(JSON.parse(json_object));
