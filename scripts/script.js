@@ -1,5 +1,8 @@
 textArea = document.getElementById('xlx_json')
 
+
+updateCanvas()
+
 var ExcelToJSON = function() {
 
     this.parseExcel = function(file) {
@@ -98,6 +101,18 @@ function addTable(lengthTitle,titleObject,lengthObject, ogObject){
 
   tableDiv.appendChild(table)
 
+}
+
+
+function updateCanvas(){
+  Jimp.read('../images/logo.png', (err, lemma) => {
+    console.log(lemma)
+  })
+
+} 
+
+function loadImage(url) {
+  return new Promise(r => { let i = new Image(); i.onload = (() => r(i)); i.src = url; });
 }
 
 function handleFileSelect(evt) {
