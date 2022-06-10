@@ -1,0 +1,91 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css' integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm' crossorigin='anonymous')
+  link(rel='stylesheet' href='stylesheets/style.css')
+  title Certificate Generator
+nav.navbar.navbar-expand-lg.navbar-light.bg-light
+  .container
+    a.navbar-brand(href='#') Certificate Generator
+    button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarNavDropdown' aria-controls='navbarNavDropdown' aria-expanded='false' aria-label='Toggle navigation')
+      span.navbar-toggler-icon
+    #navbarNavDropdown.collapse.navbar-collapse
+      ul.navbar-nav
+        li.nav-item.active
+          a.nav-link(href='#')
+            | Home 
+            span.sr-only (current)
+
+            
+.jumbotron.jumbotron-fluid
+  .container(style='text-align: center;')
+    h1.display-5 Welcome to our Certificate Generator Website
+    p.lead Download Certificate Just by uploading an excel file.
+  .container
+    #carouselExampleIndicators.carousel.slide(data-ride='carousel')
+      ol.carousel-indicators
+        li.active(data-target='#carouselExampleIndicators' data-slide-to='0')
+        li(data-target='#carouselExampleIndicators' data-slide-to='1')
+        li(data-target='#carouselExampleIndicators' data-slide-to='2')
+      .carousel-inner(style=' width:100%; height: 500px !important;')
+        .carousel-item.active
+          img.d-block.w-100(src='images/1.png' alt='First slide' style='object-fit: contain;')
+        .carousel-item
+          img.d-block.w-100(src='images/2.png' alt='Second slide' style='object-fit: contain;')
+        .carousel-item
+          img.d-block.w-100(src='images/3.png' alt='Third slide' style='object-fit: contain;')
+      a.carousel-control-prev(href='#carouselExampleIndicators' role='button' data-slide='prev')
+        span.carousel-control-prev-icon(aria-hidden='true')
+        span.sr-only Previous
+      a.carousel-control-next(href='#carouselExampleIndicators' role='button' data-slide='next')
+        span.carousel-control-next-icon(aria-hidden='true')
+        span.sr-only Next
+.container
+  p Please Choose your template below.
+  .container
+    .card-deck(style='align-items: center;')
+      .card.text-center(style='width: 18rem;')
+        img.card-img-top(src='images/1.png' alt='Card image cap')
+        .card-body
+          input#1.form-check-input(type='radio' name='flexRadioDefault')
+          label.form-check-label(for='1')
+            | Choose Template
+      .card.text-center(style='width: 18rem;')
+        img.card-img-top(src='images/2.png' alt='Card image cap')
+        .card-body
+          input#2.form-check-input(type='radio' name='flexRadioDefault')
+          label.form-check-label(for='2')
+            | Choose Template
+      .card.text-center(style='width: 18rem;')
+        img.card-img-top(src='images/3.png' alt='Card image cap')
+        .card-body
+          input#3.form-check-input(type='radio' name='flexRadioDefault')
+          label.form-check-label(for='3')
+            | Choose Template
+  .container(style='align-items: center; margin-top: 10px;')
+    form(enctype='multipart/form-data')
+      label.custom-file-upload
+        input#loadBtn(type='file' name='files[]')
+        | Upload Excel File Here
+    button#submitBtn.btn.btn-secondary.btn-lg.btn-block.btn-success(type='button') Get Certificate
+  .container(style='margin-top: 10px;')
+    #table-area(style='table-layout: fixed; width: 100%')
+footer.container
+  p.float-end
+    a(href='#') Back to top
+  p
+    | &copy; 2017&ndash;2022 Company, Inc. &middot; 
+    a(href='#') Privacy
+    |  &middot; 
+    a(href='#') Terms
+script(src='https://unpkg.com/xlsx/dist/xlsx.full.min.js')
+script(src='https://unpkg.com/pdf-lib@1.4.0')
+script(src='javascripts/FileSaver.js')
+// <script type="module" src="./downloader.mjs"></script>
+script(src='https://unpkg.com/@pdf-lib/fontkit@0.0.4')
+script(src='javascripts/index.js')
+script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js' integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN' crossorigin='anonymous')
+script(src='https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js' integrity='sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q' crossorigin='anonymous')
+script(src='https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js' integrity='sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl' crossorigin='anonymous')
