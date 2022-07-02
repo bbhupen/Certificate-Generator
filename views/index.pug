@@ -67,7 +67,7 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light
   .container(style='align-items: center; margin-top: 10px;')
     form(enctype='multipart/form-data')
       label.custom-file-upload
-        input#loadBtn(type='file' name='files[]')
+        input#loadBtn(type='file' accept='.xls,.xlsx' name='files[]')
         | Upload Excel File Here
     button#submitBtn.btn.btn-secondary.btn-lg.btn-block.btn-success(type='button') Get Certificate
   .container(style='margin-top: 10px;')
