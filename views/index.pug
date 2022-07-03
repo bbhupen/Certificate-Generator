@@ -72,14 +72,22 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light
     button#submitBtn.btn.btn-secondary.btn-lg.btn-block.btn-success(type='button') Get Certificate
   .container(style='margin-top: 10px;')
     #table-area(style='table-layout: fixed; width: 100%')
-footer.container
-  p.float-end
-    a(href='#') Back to top
-  p
-    | &copy; 2017&ndash;2022 Company, Inc. &middot; 
-    a(href='#') Privacy
-    |  &middot; 
-    a(href='#') Terms
+footer
+  .footer-top
+    .container
+      .row
+        .col-lg
+          h4 About
+          p
+            | Certificate generator is a web based application which allows the automation of certificates. It allows the user to upload an Excel file as input which contains the names of all the candidates, for whom the certificates need to be generated, and then generates the Certificates/Sheets in bulk for all of them. The user has the option to select a template of his/her choice out of the total number of available templates. The system generates as many certificates as required by the user. The aim of this web application was to help save time and hustles, and to arrange and manage certificates in an orderly manner. It aims to improve productivity and reduce exertion.
+          
+  .footer-bottom
+    .container
+      .row
+        .col-sm-12
+          p.copyright.text-uppercase
+            | Certificate Generator &copy; 2022
+
 script(src='https://unpkg.com/xlsx/dist/xlsx.full.min.js')
 script(src='https://unpkg.com/pdf-lib@1.4.0')
 script(src='javascripts/FileSaver.js')

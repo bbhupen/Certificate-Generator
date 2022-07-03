@@ -16,16 +16,8 @@ submitBtn.addEventListener("click", () => {
 
   textToPdf(6, XL_row_object)
 
+  console.log(columnNames.length)
 
-  // const val = capitalize(userName.value);
-
-  // //check if the text is empty or not
-  // if (val.trim() !== "" && userName.checkValidity()) {
-  //   // console.log(val);
-  //   generatePDF(val);
-  // } else {
-  //   userName.reportValidity();
-  // }
 });
 
 
@@ -56,9 +48,9 @@ const generatePDF = async (name, template, x, y) => {
   firstPage.drawText(name, {
     x: parseInt(x),
     y: parseInt(y),
-    size: 58,
+    size: 50,
     font: SanChezFont,
-    color: rgb(0.2, 0.84, 0.67),
+    color: rgb(0, 0, 0),
   });
 
   // Serialize the PDFDocument to bytes (a Uint8Array)
@@ -105,38 +97,20 @@ var ExcelToJSON = function () {
       });
       workbook.SheetNames.forEach(function (sheetName) {
 
-        // Here is your object
+        // Object
         XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
         var json_object = JSON.stringify(XL_row_object);
-        // console.log(XL_row_object.length);      
+        
 
-        for (let i = 0; i < (Object.keys(XL_row_object).length); i++) {
-          for (let j = 0; j < (Object.keys(XL_row_object).length); j++) {
-            // console.log(XL_row_object)
-          }
-        }
 
-        let columnNames = Object.keys(XL_row_object[1])
+        columnNames = Object.keys(XL_row_object[1])
 
-        // for printing key objects
-
-        //   for (let i=0; i< XL_row_object.length; i++){
-
-        //     for (var key in XL_row_object[i]) {
-        //         console.log(XL_row_object[i][key]);
-        //     }
-
-        // }
 
         addTable(columnNames.length, columnNames, XL_row_object.length, XL_row_object)
 
         document.getElementById('xlx_json').value = columnNames
 
 
-
-
-        // console.log(JSON.parse(json_object));
-        // jQuery( '#xlx_json' ).val( json_object );
       })
     };
 
@@ -170,7 +144,7 @@ function addTable(lengthTitle, titleObject, lengthObject, ogObject) {
       var td = document.createElement('td')
       td.appendChild(document.createTextNode(titleObject[j]))
       tr.appendChild(td)
-      // console.log(titleObject[j])
+      
     }
   }
 
@@ -209,15 +183,15 @@ function textToPdf(lengthTitle, ogObject) {
     const template = $('input[name=flexRadioDefault]:checked').attr('id');    
 
     if (template == 3){
-      var x = 220
+      var x = 225
       var y = 300
     }
     else if (template == 2){
-      var x = 220
+      var x = 225
       var y = 300
     }
     else if (template == 1){
-      var x = 220
+      var x = 225
       var y = 300
     }
 
