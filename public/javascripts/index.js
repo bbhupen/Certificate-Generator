@@ -12,11 +12,7 @@ const { PDFDocument, rgb, degrees } = PDFLib;
 
 
 submitBtn.addEventListener("click", () => {
-
-
-  textToPdf(6, XL_row_object)
-
-  console.log(columnNames.length)
+  textToPdf(XL_row_object.length, XL_row_object)
 
 });
 
@@ -80,6 +76,7 @@ function handleFileSelect(evt) {
   var files = evt.target.files; // FileList object
   var xl2json = new ExcelToJSON();
   xl2json.parseExcel(files[0]);
+  document.getElementById("submitBtn").disabled = false;
 
 }
 
@@ -100,6 +97,7 @@ var ExcelToJSON = function () {
         // Object
         XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
         var json_object = JSON.stringify(XL_row_object);
+        console.log(json_object)
         
 
 
@@ -194,8 +192,6 @@ function textToPdf(lengthTitle, ogObject) {
       var x = 225
       var y = 300
     }
-
-
 
     generatePDF(name, template, x, y)
   }

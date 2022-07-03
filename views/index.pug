@@ -49,7 +49,7 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light
       .card.text-center(style='width: 18rem;')
         img.card-img-top(src='images/1.png' alt='Card image cap')
         .card-body
-          input#1.form-check-input(type='radio' name='flexRadioDefault')
+          input#1.form-check-input(type='radio' name='flexRadioDefault' required)
           label.form-check-label(for='1')
             | Choose Template
       .card.text-center(style='width: 18rem;')
@@ -69,7 +69,7 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light
       label.custom-file-upload
         input#loadBtn(type='file' accept='.xls,.xlsx' name='files[]')
         | Upload Excel File Here
-    button#submitBtn.btn.btn-secondary.btn-lg.btn-block.btn-success(type='button') Get Certificate
+    button#submitBtn.btn.btn-secondary.btn-lg.btn-block.btn-success(type='button' disabled) Get Certificate
   .container(style='margin-top: 10px;')
     #table-area(style='table-layout: fixed; width: 100%')
 footer
