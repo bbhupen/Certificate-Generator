@@ -1,1 +1,3 @@
 # Certificate-Generator
+Certificate generator is a web based application which allows the automation of certificates. It allows the user to upload an Excel file as input which contains the names of all the candidates, for whom the certificates need to be generated, and then generates the Certificates/Sheets in bulk for all of them. The user has the option to select a template of his/her choice out of the total number of available templates. The system generates as many certificates as required by the user. The aim of this web application was to help save time and hustles, and to arrange and manage certificates in an orderly manner. It aims to improve productivity and reduce exertion.
+

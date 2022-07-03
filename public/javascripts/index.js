@@ -8,9 +8,6 @@ const loadBtn = document.getElementById("loadBtn");
 loadBtn.addEventListener('change', handleFileSelect, false);
 const { PDFDocument, rgb, degrees } = PDFLib;
 
-
-
-
 submitBtn.addEventListener("click", () => {
   textToPdf(XL_row_object.length, XL_row_object)
 
