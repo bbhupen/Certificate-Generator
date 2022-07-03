@@ -16,7 +16,7 @@ app.use('/', indexRouter);
 
 
 app.listen(PORT , ()=>{
-  console.log(`Listening on port ${PORT} or visit http://localhost:${PORT}/`)
+  console.log(`Listening on port ${PORT}`)
 })
 
 
