@@ -5,7 +5,7 @@ const loadBtn = document.getElementById("loadBtn");
 
 
 loadBtn.addEventListener('change', handleFileSelect, false);
-const { PDFDocument, rgb, degrees } = PDFLib;
+const { PDFDocument, rgb } = PDFLib;
 
 getCertificateBtn.addEventListener("click", () => {
   textToPdf(sheetCells.length, sheetCells)
