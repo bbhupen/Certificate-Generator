@@ -92,14 +92,12 @@ var ExcelToJSON = function () {
       workbook.SheetNames.forEach(function (sheetName) {
 
         // Object
-
         sheetCells = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName]);
-        var json_object = JSON.stringify(sheetCells);
-        console.log(json_object)
-        
-        
+        console.log(sheetCells)
+      
         
         columnNames = Object.keys(sheetCells[1])
+        console.log(columnNames)
         addTable(columnNames.length, columnNames, sheetCells.length, sheetCells)
 
 
