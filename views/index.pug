@@ -69,7 +69,7 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light
       label.custom-file-upload
         input#loadBtn(type='file' accept='.xls,.xlsx' name='files[]')
         | Upload Excel File Here
-    button#submitBtn.btn.btn-secondary.btn-lg.btn-block.btn-success(type='button' disabled) Get Certificate
+    button#getCertificateBtn.btn.btn-secondary.btn-lg.btn-block.btn-success(type='button' disabled) Get Certificate
   .container(style='margin-top: 10px;')
     #table-area(style='table-layout: fixed; width: 100%')
 footer
@@ -91,7 +91,6 @@ footer
 script(src='https://unpkg.com/xlsx/dist/xlsx.full.min.js')
 script(src='https://unpkg.com/pdf-lib@1.4.0')
 script(src='javascripts/FileSaver.js')
-// <script type="module" src="./downloader.mjs"></script>
 script(src='https://unpkg.com/@pdf-lib/fontkit@0.0.4')
 script(src='javascripts/index.js')
 script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js' integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN' crossorigin='anonymous')

@@ -1,5 +1,4 @@
-const userName = document.getElementById("name");
-const submitBtn = document.getElementById("submitBtn");
+const getCertificateBtn = document.getElementById("getCertificateBtn");
 const loadBtn = document.getElementById("loadBtn");
 
 
@@ -8,8 +7,8 @@ const loadBtn = document.getElementById("loadBtn");
 loadBtn.addEventListener('change', handleFileSelect, false);
 const { PDFDocument, rgb, degrees } = PDFLib;
 
-submitBtn.addEventListener("click", () => {
-  textToPdf(XL_row_object.length, XL_row_object)
+getCertificateBtn.addEventListener("click", () => {
+  textToPdf(sheetCells.length, sheetCells)
 
 });
 
@@ -46,34 +45,21 @@ const generatePDF = async (name, template, x, y) => {
     color: rgb(0, 0, 0),
   });
 
-  // Serialize the PDFDocument to bytes (a Uint8Array)
-  const pdfBytes = await pdfDoc.save();
-  console.log("Done creating");
+  //Saving the pdf using Filesaver.js
 
-  // this was for creating uri and showing in iframe
+  const pdfDataUri = await pdfDoc.saveAsBase64({ dataUri: true });
 
-  // const pdfDataUri = await pdfDoc.saveAsBase64({ dataUri: true });
-  // document.getElementById("pdf").src = pdfDataUri;
-
-  var file = new File(
-    [pdfBytes],
-    name,
-    {
-      type: "application/pdf;charset=utf-8",
-    }
-  );
-  saveAs(file);
+  saveAs(pdfDataUri, name, { autoBom: true});
 };
 
-// init();
 
 
-function handleFileSelect(evt) {
+function handleFileSelect(event) {
 
-  var files = evt.target.files; // FileList object
+  var files = event.target.files; // FileList object
   var xl2json = new ExcelToJSON();
   xl2json.parseExcel(files[0]);
-  document.getElementById("submitBtn").disabled = false;
+  document.getElementById("getCertificateBtn").disabled = false;
 
 }
 
@@ -81,33 +67,45 @@ function handleFileSelect(evt) {
 
 var ExcelToJSON = function () {
 
+
   this.parseExcel = function (file) {
+
+    //read the raw bytes of a file
     var reader = new FileReader();
 
+
+    //when the file is loaded
     reader.onload = function (e) {
+
+      //read the raw bytes of the file
       var data = e.target.result;
+
+      //convert the raw bytes to a binary string
       var workbook = XLSX.read(data, {
         type: 'binary'
       });
+
+      console.log(workbook)
+
+      //get the first sheet of the workbook
+
       workbook.SheetNames.forEach(function (sheetName) {
 
         // Object
-        XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
-        var json_object = JSON.stringify(XL_row_object);
+
+        sheetCells = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName]);
+        var json_object = JSON.stringify(sheetCells);
         console.log(json_object)
         
-
-
-        columnNames = Object.keys(XL_row_object[1])
-
-
-        addTable(columnNames.length, columnNames, XL_row_object.length, XL_row_object)
-
-        document.getElementById('xlx_json').value = columnNames
+        
+        
+        columnNames = Object.keys(sheetCells[1])
+        addTable(columnNames.length, columnNames, sheetCells.length, sheetCells)
 
 
       })
     };
+
 
     reader.onerror = function (ex) {
       console.log(ex);
@@ -119,7 +117,10 @@ var ExcelToJSON = function () {
 };
 
 
-function addTable(lengthTitle, titleObject, lengthObject, ogObject) {
+
+//Function add Table
+
+function addTable(lengthTitle, titleObject, noOfRows, xlObject) {
   var tableDiv = document.getElementById('table-area')
 
   var table = document.createElement("table")
@@ -127,13 +128,12 @@ function addTable(lengthTitle, titleObject, lengthObject, ogObject) {
   table.border = 1
   table.appendChild(tableBody)
 
-  //for row
-
-  for (var i = 0; i < 1; i++) {
+    
+    //Adding the title row
     var tr = document.createElement('tr')
     tableBody.appendChild(tr)
 
-    //for column
+    //add cells
 
     for (var j = 0; j < lengthTitle; j++) {
       var td = document.createElement('td')
@@ -141,22 +141,21 @@ function addTable(lengthTitle, titleObject, lengthObject, ogObject) {
       tr.appendChild(td)
       
     }
-  }
 
-  //FOR ELEMENTS
-
+  //add elements
 
 
-  for (var i = 0; i < lengthObject; i++) {
+
+  for (var i = 0; i < noOfRows; i++) {
     var tr = document.createElement('tr')
     tableBody.appendChild(tr)
 
 
     for (var j = 0; j < lengthTitle; j++) {
       var td = document.createElement('td')
-      td.appendChild(document.createTextNode(ogObject[i][titleObject[j]]))
+      td.appendChild(document.createTextNode(xlObject[i][titleObject[j]]))
       tr.appendChild(td)
-      // console.log(ogObject[i]['Name'])
+      // console.log(xlObject[i]['Name'])
     }
   }
 
@@ -168,12 +167,12 @@ function addTable(lengthTitle, titleObject, lengthObject, ogObject) {
 
 
 
-function textToPdf(lengthTitle, ogObject) {
+function textToPdf(lengthTitle, xlObject) {
   for (var i = 0; i < lengthTitle; i++) {
     // var td = document.createElement('td')
-    // td.appendChild(document.createTextNode(ogObject[i][titleObject[j]]))
+    // td.appendChild(document.createTextNode(xlObject[i][titleObject[j]]))
     // tr.appendChild(td)
-    var name = ogObject[i]['Name']
+    var name = xlObject[i]['Name']
 
     const template = $('input[name=flexRadioDefault]:checked').attr('id');    
 
